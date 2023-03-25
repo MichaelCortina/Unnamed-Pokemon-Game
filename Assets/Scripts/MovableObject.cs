@@ -24,6 +24,6 @@ public class MovableObject : MonoBehaviour
 
     private void Awake()
     {
-        _inputProvider = GetComponent<InputProvider>();
+        _inputProvider = GetComponent<InputProvider>(); 
     }
 }
