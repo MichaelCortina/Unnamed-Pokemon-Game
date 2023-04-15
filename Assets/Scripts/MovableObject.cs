@@ -1,29 +1,42 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// Component allowing for input to move this gameObject on the xz plane
+/// </summary>
 public class MovableObject : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
 
-    private InputProvider _inputProvider;
+    protected InputProvider InputProvider;
 
-    /// moves an object in direction, multiplied
-    /// by the movement speed of the object 
+    /// <summary>
+    /// Moves this object in the specified direction scaled by moveSpeed. The direction input is not normalized and
+    /// is therefore capable of moving the object at a speed besides just moveSpeed. Normalize the direction first if
+    /// the object needs to be translated by exactly moveSpeed.
+    /// </summary>
+    /// <param name="direction">The direction to move.</param>
     public void MoveObject(Vector2 direction)
     {
-        Vector3 offset = direction * moveSpeed;
+        // Converts input direction into 3D space
+        Vector3 offset = new Vector3(direction.x, 0, direction.y) * moveSpeed;
 
         transform.position += offset;
     }
 
-    /// moves object each physics step based on input provided by the input provider
+    public virtual Vector2 GetDirection()
+    {
+        return InputProvider.GetDirection();
+    }
+    
+    /// Moves object each physics step based on input provided by the input provider
     private void FixedUpdate()
     {
-        MoveObject(_inputProvider.GetDirection() * Time.deltaTime);   
+        MoveObject(GetDirection() * Time.deltaTime);   
     }
 
     private void Awake()
     {
-        _inputProvider = GetComponent<InputProvider>();
+        InputProvider = GetComponent<InputProvider>();
     }
 }
