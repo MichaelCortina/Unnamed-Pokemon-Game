@@ -22,5 +22,17 @@ namespace PokemonData
         [SerializeField] private short sAtt;
         [SerializeField] private short sDef;
         [SerializeField] private short spd;
+
+        private Sprite _backingSprite;
+        public Sprite Sprite
+        {
+            get
+            {
+                if (_backingSprite is null)
+                    _backingSprite = Resources.Load<Sprite>($"PokemonSprites/{name}");
+                
+                return _backingSprite;
+            }
+        }
     }
 }

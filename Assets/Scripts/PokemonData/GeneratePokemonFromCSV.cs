@@ -23,10 +23,9 @@ namespace PokemonData
     {
         [SerializeField] private string dataFilePath;
         [SerializeField] private string outputDirectoryPath;
-        
-        private const int NameIndex = 2;
-        
-        #nullable enable
+        [SerializeField] private int nameIndex = 2;
+
+#nullable enable
         [ContextMenu("Generate Pokemon")]
         public void GenerateScriptableObjects()
         {
@@ -36,7 +35,7 @@ namespace PokemonData
             for (int i = 1; i < lines.Length; i++)
             {
                 string[] splitLine = lines[i].Split(',');
-                string filename = splitLine[NameIndex];
+                string filename = splitLine[nameIndex];
 
                 using StreamWriter writer = new(
                     $"{outputDirectoryPath}/{filename}.asset");
@@ -60,8 +59,9 @@ namespace PokemonData
                 int j = 0;
                 foreach (FieldInfo field in fields)
                 {
+                    if (j == nameIndex) j++; //skip index containing filename
+                    if (field.Name[0] == '_') continue; //skip all backing variables
                     writer.Write($"  {field.Name}: {splitLine[j++]} \n");
-                    if (j == NameIndex) j++;
                 }
             }
             

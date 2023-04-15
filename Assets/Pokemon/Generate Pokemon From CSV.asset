@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataFilePath: Assets/Pokemon/Pokermen - Pokedex.csv
   outputDirectoryPath: Assets/Pokemon/Pokemon Data
+  nameIndex: 2
