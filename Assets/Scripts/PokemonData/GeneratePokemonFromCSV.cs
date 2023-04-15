@@ -1,10 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 
 namespace PokemonData
 {
-
+    
     /// <summary>
     /// Given the path to a csv file <c>dataFilePath</c> containing a list of
     /// data for various pokemon, this script will generate a PokemonData ScriptableObject
@@ -22,17 +24,19 @@ namespace PokemonData
         [SerializeField] private string dataFilePath;
         [SerializeField] private string outputDirectoryPath;
         
+        private const int NameIndex = 2;
+        
         #nullable enable
         [ContextMenu("Generate Pokemon")]
         public void GenerateScriptableObjects()
         {
             string[] lines = File.ReadAllLines(dataFilePath);
-            string[] properties = lines[0].Split(',');
+            var fields = typeof(PokemonData).GetRuntimeFields();
             
             for (int i = 1; i < lines.Length; i++)
             {
                 string[] splitLine = lines[i].Split(',');
-                string filename = splitLine[0];
+                string filename = splitLine[NameIndex];
 
                 using StreamWriter writer = new(
                     $"{outputDirectoryPath}/{filename}.asset");
@@ -52,10 +56,15 @@ namespace PokemonData
                     "  m_Script: {fileID: 11500000, guid: 0c98e410bef84e189121b23a02321f9e, type: 3}    \n" +
                    $"  m_Name: {filename}                                                               \n" +
                     "  m_EditorClassIdentifier:                                                         \n");
-                
-                for (int j = 0; j < properties.Length; j++)
-                    writer.Write($"  {properties[j]}: {splitLine[j]} \n");
+
+                int j = 0;
+                foreach (FieldInfo field in fields)
+                {
+                    writer.Write($"  {field.Name}: {splitLine[j++]} \n");
+                    if (j == NameIndex) j++;
+                }
             }
+            
         }
     }
 }

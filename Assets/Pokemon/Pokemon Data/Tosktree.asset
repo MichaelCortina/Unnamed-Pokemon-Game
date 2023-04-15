@@ -10,6 +10,20 @@ MonoBehaviour:
   m_Enabled: 1                                                                     
   m_EditorHideFlags: 0                                                             
   m_Script: {fileID: 11500000, guid: 0c98e410bef84e189121b23a02321f9e, type: 3}    
-  m_Name: test                                                               
+  m_Name: Tosktree                                                               
   m_EditorClassIdentifier:                                                         
-  pokemonName: test 
+  number: 003 
+  sprite:  
+  type1: Grass 
+  type2: Ground 
+  ability1: Overgrow 
+  ability2: -- 
+  hiddenAbility: Harvest 
+  notes: Antlered leafy buff squirrel 
+  bst: 0 
+  hp:  
+  att:  
+  def:  
+  sAtt:  
+  sDef:  
+  spd:  

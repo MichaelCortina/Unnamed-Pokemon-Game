@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c4acaf400941229e201dfc6087c6df, type: 3}
   m_Name: Generate Pokemon From CSV
   m_EditorClassIdentifier: 
-  dataFilePath: Assets/Pokemon/UnnamedPokemonGame.csv
+  dataFilePath: Assets/Pokemon/Pokermen - Pokedex.csv
   outputDirectoryPath: Assets/Pokemon/Pokemon Data
