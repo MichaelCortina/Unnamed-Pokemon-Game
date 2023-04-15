@@ -8,12 +8,7 @@ using FixedUpdate = UnityEngine.PlayerLoop.FixedUpdate;
 public class GridBoundObject : MovableObject
 {
     [SerializeField] private Grid grid;
-    private Vector2 _lastDirection;
-
-    private void Start()
-    {
-        _lastDirection = Vector2.zero;
-    }
+    private Vector2 _lastDirection = Vector2.zero;
 
     private void Update()
     {
@@ -31,6 +26,7 @@ public class GridBoundObject : MovableObject
     private void UpdateDirection()
     {
         Vector2 direction = InputProvider.GetDirection();
+        
         if (direction.x != 0f)
             _lastDirection.x = direction.x;
         else if (IsXAligned())

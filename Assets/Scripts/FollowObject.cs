@@ -13,7 +13,7 @@ public class FollowObject : MonoBehaviour
     [SerializeField] private GameObject followTarget;
     private Vector3 _relativePosition;
     
-    private void Start()
+    private void Awake()
     {
         _relativePosition = transform.position - followTarget.transform.position;
     }

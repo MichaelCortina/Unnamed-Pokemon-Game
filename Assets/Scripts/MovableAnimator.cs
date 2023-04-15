@@ -12,7 +12,7 @@ public class MovableAnimator : MonoBehaviour
     private MovableObject _movableObject;
     [SerializeField] private Animator animator;
     
-    private void Start()
+    private void Awake()
     {
         _movableObject = GetComponent<MovableObject>();
     }
@@ -23,7 +23,6 @@ public class MovableAnimator : MonoBehaviour
         bool isMoving = direction != Vector2.zero;
         // If anyone knows how to do this without string references please tell me - Cy
         animator.SetBool("Moving", isMoving);
-
         if (isMoving) UpdateRotation(direction);
     }
 
