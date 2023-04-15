@@ -4,16 +4,16 @@ using PokemonData;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(GeneratePokemonFromCSV))]
-public class GeneratePokemonFromCSVEditor : Editor
+[CustomEditor(typeof(GenerateScriptableObjectsFromCSV))]
+public class GenerateScriptableObjectsFromCSVEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
         
-        if (GUILayout.Button("Generate Pokemon"))
+        if (GUILayout.Button("Generate Scriptable Objects"))
         {
-            var currentObject = (GeneratePokemonFromCSV) target;
+            var currentObject = (GenerateScriptableObjectsFromCSV) target;
             
             currentObject.GenerateScriptableObjects();
         }
