@@ -16,37 +16,47 @@ namespace PokemonData
     /// To generate the PokemonData use the custom editor button on the script during edit
     /// mode.
     /// </summary>
+    [CreateAssetMenu]
     public class GeneratePokemonFromCSV : ScriptableObject
     {
         [SerializeField] private string dataFilePath;
         [SerializeField] private string outputDirectoryPath;
-
+        
+        #nullable enable
+        [ContextMenu("Generate Pokemon")]
         public void GenerateScriptableObjects()
         {
             string[] lines = File.ReadAllLines(dataFilePath);
-                
-            foreach (var arr in lines.Select(s => s.Split(',')))
+            string[] properties = lines[0].Split(',');
+            
+            for (int i = 1; i < lines.Length; i++)
             {
-                string name = arr[0];
+                string[] splitLine = lines[i].Split(',');
+                string filename = splitLine[0];
 
-                PokemonData pokemon = FindPokemonWithName(name);
+                using StreamWriter writer = new(
+                    $"{outputDirectoryPath}/{filename}.asset");
 
-                if (pokemon == null)
-                    pokemon = CreateInstance<PokemonData>();
+                writer.Write(
+                    "%YAML 1.1                                                                          \n" +
+                    "%TAG !u! tag:unity3d.com,2011:                                                     \n" +
+                    "--- !u!114 &11400000                                                               \n" +
+                    "MonoBehaviour:                                                                     \n" +
+                    "  m_ObjectHideFlags: 0                                                             \n" +
+                    "  m_CorrespondingSourceObject: {fileID: 0}                                         \n" +
+                    "  m_PrefabInstance: {fileID: 0}                                                    \n" +
+                    "  m_PrefabAsset: {fileID: 0}                                                       \n" +
+                    "  m_GameObject: {fileID: 0}                                                        \n" +
+                    "  m_Enabled: 1                                                                     \n" +
+                    "  m_EditorHideFlags: 0                                                             \n" +
+                    "  m_Script: {fileID: 11500000, guid: 0c98e410bef84e189121b23a02321f9e, type: 3}    \n" +
+                   $"  m_Name: {filename}                                                               \n" +
+                    "  m_EditorClassIdentifier:                                                         \n");
                 
-                
+                for (int j = 0; j < properties.Length; j++)
+                    writer.Write($"  {properties[j]}: {splitLine[j]} \n");
             }
         }
-
-        private PokemonData FindPokemonWithName(string name)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
-    public class PokemonData : ScriptableObject
-    {
-        public string Name { get; init; }
     }
 }
 
