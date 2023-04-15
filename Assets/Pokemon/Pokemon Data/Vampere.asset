@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Vampere                           
   m_EditorClassIdentifier:                     
   number: 045 
-  sprite:  
   type1: Electric 
   type2: Ghost 
   ability1: Levitate 

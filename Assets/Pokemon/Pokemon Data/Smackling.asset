@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Smackling                           
   m_EditorClassIdentifier:                     
   number: 038 
-  sprite:  
   type1: Grass 
   type2: Fighting 
   ability1: Defiant 

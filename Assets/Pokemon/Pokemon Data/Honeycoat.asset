@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Honeycoat                           
   m_EditorClassIdentifier:                     
   number: 052 
-  sprite:  
   type1: Bug 
   type2: -- 
   ability1:  

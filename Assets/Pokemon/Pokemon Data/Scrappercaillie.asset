@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Scrappercaillie                           
   m_EditorClassIdentifier:                     
   number: 049 
-  sprite:  
   type1: Ground 
   type2: Fighting 
   ability1:  

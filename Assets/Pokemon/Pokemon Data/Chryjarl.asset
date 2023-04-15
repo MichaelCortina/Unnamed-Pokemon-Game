@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Chryjarl                           
   m_EditorClassIdentifier:                     
   number: 059 
-  sprite:  
   type1: Bug 
   type2: Dragon 
   ability1: Compound Eyes 

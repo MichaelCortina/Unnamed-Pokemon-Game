@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Ratanch                           
   m_EditorClassIdentifier:                     
   number: 002 
-  sprite:  
   type1: Grass 
   type2: -- 
   ability1: Overgrow 

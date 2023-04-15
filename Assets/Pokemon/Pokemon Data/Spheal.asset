@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Spheal                           
   m_EditorClassIdentifier:                     
   number: 016 
-  sprite:  
   type1: Ice 
   type2: Water 
   ability1: Thick Fat 

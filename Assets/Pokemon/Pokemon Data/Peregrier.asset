@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Peregrier                           
   m_EditorClassIdentifier:                     
   number: 056 
-  sprite:  
   type1: Normal 
   type2: Flying 
   ability1:  

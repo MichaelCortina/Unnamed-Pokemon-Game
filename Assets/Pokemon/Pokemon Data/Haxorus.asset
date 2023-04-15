@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Haxorus                           
   m_EditorClassIdentifier:                     
   number: 026 
-  sprite:  
   type1: Dragon 
   type2: -- 
   ability1: Rivalry 

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Mewling                           
   m_EditorClassIdentifier:                     
   number: 041 
-  sprite:  
   type1: Fire 
   type2: Fairy 
   ability1:  

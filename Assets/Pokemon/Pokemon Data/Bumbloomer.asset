@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Bumbloomer                           
   m_EditorClassIdentifier:                     
   number: 053 
-  sprite:  
   type1: Bug 
   type2: -- 
   ability1:  

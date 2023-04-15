@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Walrein                           
   m_EditorClassIdentifier:                     
   number: 018 
-  sprite:  
   type1: Ice 
   type2: Water 
   ability1: Thick Fat 

@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Pyrfoal                           
   m_EditorClassIdentifier:                     
   number: 004 
-  sprite:  
   type1: Fire 
   type2: -- 
   ability1: Blaze 

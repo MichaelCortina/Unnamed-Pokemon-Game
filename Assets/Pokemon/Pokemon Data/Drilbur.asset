@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Drilbur                           
   m_EditorClassIdentifier:                     
   number: 063 
-  sprite:  
   type1: Ground 
   type2: -- 
   ability1:  

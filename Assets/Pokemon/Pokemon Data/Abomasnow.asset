@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Abomasnow                           
   m_EditorClassIdentifier:                     
   number: 020 
-  sprite:  
   type1: Ice 
   type2: Grass 
   ability1: Snow Warning 

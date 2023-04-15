@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Cleavale                           
   m_EditorClassIdentifier:                     
   number: 008 
-  sprite:  
   type1: Water 
   type2: -- 
   ability1: Torrent 

@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataFilePath: Assets/Pokemon/Pokermen - Pokedex.csv
   outputDirectoryPath: Assets/Pokemon/Pokemon Data
+  namespaceQualifiedTypeName: PokemonData.PokemonData
+  scriptData: '{fileID: 11500000, guid: 0c98e410bef84e189121b23a02321f9e, type: 3}'
   nameIndex: 2
+  skipIndices: 0100000002000000

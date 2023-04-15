@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Arborcut                           
   m_EditorClassIdentifier:                     
   number: 040 
-  sprite:  
   type1: Grass 
   type2: Fighting 
   ability1: Defiant 

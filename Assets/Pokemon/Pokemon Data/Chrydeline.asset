@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Chrydeline                           
   m_EditorClassIdentifier:                     
   number: 057 
-  sprite:  
   type1: Bug 
   type2: Ghost 
   ability1: Compound Eyes 

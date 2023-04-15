@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Trodag                           
   m_EditorClassIdentifier:                     
   number: 012 
-  sprite:  
   type1: Rock 
   type2: Fire 
   ability1: Turn to Stone (Night) 

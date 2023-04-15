@@ -40,6 +40,9 @@ namespace PokemonData
         // indicates which line should be used for the scriptable object file name
         [SerializeField] private int nameIndex = 2;
         
+        // indices of the CSV to not read into the ScriptableObject
+        [SerializeField] private int[] skipIndices;
+        
         /// <summary>
         /// creates a .asset file filled with data for each line from the provided
         /// CSV file at path <c>dataFilePath</c>, all backing fields of the scriptable
@@ -91,8 +94,12 @@ namespace PokemonData
                 int j = 0;
                 foreach (FieldInfo field in fields)
                 {
-                    if (j == nameIndex) j++; //skip index containing filename
-                    if (field.Name[0] == '_') continue; //skip all backing variables
+                    while (skipIndices.Contains(j))
+                        j++; // skip specified indices
+
+                    if (field.Name[0] == '_') 
+                        continue;  // skip all backing variables
+                    
                     writer.Write($"  {field.Name}: {splitLine[j++]} \n");
                 }
             }
