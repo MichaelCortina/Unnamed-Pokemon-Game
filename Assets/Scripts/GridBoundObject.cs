@@ -10,16 +10,25 @@ public class GridBoundObject : MovableObject
     [SerializeField] private Grid grid;
     private Vector2 _lastDirection = Vector2.zero;
 
-    private void Update()
+    protected new void FixedUpdate()
     {
         UpdateDirection();
+        Vector3 lastPos = transform.position;
+        base.FixedUpdate();
+        Vector3 posChange = transform.position - lastPos;
+        // TODO: Make this SnapToGrid and zero _lastDirection if the position change is small enough, not just if it is zero
+        if (posChange == Vector3.zero)
+        {
+            SnapToGrid();
+            _lastDirection = Vector3.zero;
+        }
     }
 
     public override Vector2 GetDirection()
     {
         return _lastDirection;
     }
-    
+
     /// <summary>
     /// Update _lastDirection if we have non-zero inputs. Otherwise remember the input until aligned to the grid.
     /// </summary>
@@ -61,7 +70,11 @@ public class GridBoundObject : MovableObject
     /// <returns>True if our x distance from the grid cell is less than accuracy</returns>
     private bool IsXAligned(float accuracy = 0.1f)
     {
-        return Mathf.Abs(transform.position.x % grid.cellSize.x) < accuracy;
+        float xPos = transform.position.x;
+        float xSize = grid.cellSize.x;
+        bool aligned = Mathf.Abs(xPos % xSize) < accuracy;
+
+        return aligned;
     }
     
     /// <summary>
@@ -71,30 +84,36 @@ public class GridBoundObject : MovableObject
     /// <returns>True if our z distance from the grid cell is less than accuracy</returns>
     private bool IsZAligned(float accuracy = 0.1f)
     {
-        return Mathf.Abs(transform.position.z % grid.cellSize.z) < accuracy;
+        float zPos = transform.position.z;
+        float zSize = grid.cellSize.z;
+        bool aligned = Mathf.Abs(zPos % zSize) < accuracy;
+            
+        return aligned;
     }
 
     private void SnapToGrid()
     {
-        SnapX();
-        SnapZ();
+        Vector3 pos = transform.position;
+        transform.position = new Vector3(GetSnappedValue(pos.x, grid.cellSize.x), pos.y, GetSnappedValue(pos.z, grid.cellSize.z));
     }
 
     private void SnapX()
     {
         Vector3 pos = transform.position;
-        Vector3 size = grid.cellSize;
-        float snappedX = pos.x - (pos.x % size.x) + Mathf.Round((pos.x % size.x) / size.x);
-        
-        transform.position = new Vector3(snappedX, pos.y, pos.z);
+        transform.position = new Vector3(GetSnappedValue(pos.x, grid.cellSize.x), pos.y, pos.z);
     }
-
+    
     private void SnapZ()
     {
         Vector3 pos = transform.position;
-        Vector3 size = grid.cellSize;
-        float snappedZ = pos.z - (pos.z % size.z) + Mathf.Round((pos.z % size.z) / size.z);
-        
-        transform.position = new Vector3(pos.x, pos.y, snappedZ);
+        transform.position = new Vector3(pos.x, pos.y, GetSnappedValue(pos.z, grid.cellSize.z));
+    }
+
+    private float GetSnappedValue(float position, float gridSize)
+    {
+        float localPosInCell = position % gridSize;
+        float flooredCellPos = position - localPosInCell;
+        float percentPosInCell = localPosInCell / gridSize;
+        return flooredCellPos + (Mathf.Round(percentPosInCell) * gridSize);
     }
 }
