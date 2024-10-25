@@ -11,6 +11,7 @@ public class MovableAnimator : MonoBehaviour
 {
     private MovableObject _movableObject;
     [SerializeField] private Animator animator;
+    [SerializeField] private bool updateGameObjectRotation = false;
     
     private void Awake()
     {
@@ -21,9 +22,15 @@ public class MovableAnimator : MonoBehaviour
     {
         Vector2 direction = _movableObject.GetDirection();
         bool isMoving = direction != Vector2.zero;
-        // If anyone knows how to do this without string references please tell me - Cy
-        animator.SetBool("Moving", isMoving);
-        if (isMoving) UpdateRotation(direction);
+        UpdateAnimatorParameters(direction);
+        if (isMoving && updateGameObjectRotation) UpdateRotation(direction);
+    }
+
+    private void UpdateAnimatorParameters(Vector2 direction)
+    {
+        animator.SetFloat("VelocityX", direction.x);
+        animator.SetFloat("VelocityZ", direction.y);
+        animator.SetFloat("VelocityMagnitude", direction.magnitude);
     }
 
     /// <summary>

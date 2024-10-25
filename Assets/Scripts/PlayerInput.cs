@@ -23,9 +23,4 @@ public class PlayerInput : MonoBehaviour, InputProvider
         Vector2 moveDirection = new Vector2(x, y);
         return moveDirection.normalized;
     }
-
-    /// returns a Vector2 with the greater of x & y favoring x if equal,
-    /// the other axis is set to 0
-    private static Vector2 ClampAxis(float x, float y)
-        => Mathf.Abs(x) < Mathf.Abs(y) ? new(0, y) : new(x, 0);
 }

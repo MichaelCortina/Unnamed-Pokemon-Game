@@ -14,6 +14,7 @@ public class MovableObject : MonoBehaviour
     protected InputProvider InputProvider;
     private Collider _collider;
     private bool _hasCollider;
+    private Vector2 _lastNonZeroDirection;
 
     /// <summary>
     /// Moves this object in the specified direction scaled by moveSpeed. The direction input is not normalized and
@@ -67,7 +68,22 @@ public class MovableObject : MonoBehaviour
     /// Moves object each physics step based on input provided by the input provider
     protected void FixedUpdate()
     {
-        MoveObject(GetDirection() * Time.deltaTime);   
+        UpdateLastNonZeroDirection();
+        MoveObject(GetDirection() * Time.deltaTime); 
+    }
+
+    /// <summary>
+    /// Updates the _lastNonZeroDirection variable when appropriate to do so.
+    /// </summary>
+    /// <returns>True if this call changed _lastNonZeroDirection, false if otherwise, effectively returning whether or
+    /// not the current direction is non-zero</returns>
+    private bool UpdateLastNonZeroDirection()
+    {
+        Vector2 direction = GetDirection();
+        bool directionIsNonZero = direction != Vector2.zero;
+        if (directionIsNonZero)
+            _lastNonZeroDirection = direction;
+        return directionIsNonZero;
     }
 
     private void Awake()
